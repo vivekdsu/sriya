@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffd5e5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden; /* Ensure no horizontal scrolling */
+    }
+
+    #container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 400px;
+      width: 100%;
+      margin: 20px; /* Create some space around the container */
+    }
+
+    h1 {
+      color: #ff66a3;
+      margin-bottom: 20px;
+      font-size: 26px;
+      text-align: center;
+      transition: color 0.3s ease;
+    }
+
+    h1:hover {
+      color: #ff3385;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 15px 30px;
+      margin: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #ff4d94;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #noButton {
+      font-size: 18px;
+      padding: 12px 25px;
+      position: relative;
+    }
+
+    #noButton:hover {
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      width: 100%; /* Make message section fill the container */
+    }
+
+    #valentineImage, #homepageImage, #celebrationImage {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-top: 20px;
+      border: 5px solid #ff66a3;
+      transition: transform 0.3s ease;
+    }
+
+    #homepageImage:hover, #valentineImage:hover, #celebrationImage:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      button {
+        font-size: 18px;
+        padding: 12px 25px;
+      }
+
+      #noButton {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      #container {
+        padding: 20px;
+      }
+
+      img {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      #noButton {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <img id="homepageImage" src="dudu-cute.gif" alt="Attractive Image" width="350px">
+  <h1>Will you be mine forever, Sriya? 💖</h1>
+  <button id="yesButton" onclick="showMessage()">Yes</button>
+  <button id="noButton" onclick="increaseNoButton()">No</button>
+  <div id="message">
+    <p>Yay! You said yes! 😍</p>
+    <img id="valentineImage" src="https://media1.tenor.com/m/jjM8wEXXNqwAAAAd/kiss.gif" alt="Cute bear kissing" width="200px">
+    <p>Wait, Sriya, I'm coming! 😍</p>
+    <img id="celebrationImage" src="ash.jpg" alt="Celebration" width="300px">
+  </div>
+</div>
+
+<script>
+  let noButtonClicks = 0;
+  let yesButtonSize = 22; // Initial font-size for the Yes button
+  let yesButtonPadding = 15; // Initial padding for the Yes button
+
+  function increaseNoButton() {
+    noButtonClicks++;
+    document.getElementById('noButton').innerHTML = getNoButtonText();
+    increaseYesButtonSize(); // Call the function to increase Yes button size
+  }
+
+  function increaseYesButtonSize() {
+    yesButtonSize += 2; // Increase the font-size of the Yes button by 2px
+    yesButtonPadding += 3; // Increase the padding to keep proportions nice
+
+    let yesButton = document.getElementById('yesButton');
+    yesButton.style.fontSize = yesButtonSize + 'px';
+    yesButton.style.padding = yesButtonPadding + 'px ' + (yesButtonPadding * 2) + 'px'; // Adjust both padding sides
+  }
+
+  function getNoButtonText() {
+    const options = [
+      "Are you sure? 🙄",
+      "Please don't do this! 😭",
+      "Maybe reconsider?",
+      "Think about it chimka gaaru!",
+      "Vivek is going to cry! 😭😭",
+      "Don't break my heart🥺! "
+    ];
+
+    return options[noButtonClicks % options.length];
+  }
+
+  function showMessage() {
+    document.getElementById('yesButton').style.display = 'none';
+    document.getElementById('noButton').style.display = 'none';
+    document.getElementById('message').style.display = 'block';
+    document.body.style.overflowY = 'auto'; // Enable vertical scrolling
+  }
+</script>
+
+</body>
+</html>
